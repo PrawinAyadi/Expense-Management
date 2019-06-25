@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "22415720095",
+    "firebase_url": "https://manageexpense-f81fe.firebaseio.com",
+    "project_id": "manageexpense-f81fe",
+    "storage_bucket": "manageexpense-f81fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22415720095:android:86fa4f806dd34219",
+        "android_client_info": {
+          "package_name": "com.example.jasper.manageexpense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22415720095-aesgngpn4up9d1tkhj67jf49vn90vm0s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jasper.manageexpense",
+            "certificate_hash": "328c7edc95059c0f648d3efd327bb3702fbfb103"
+          }
+        },
+        {
+          "client_id": "22415720095-7i4ken0n38rrqctcvc41d2grgit143ia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfv0T38QJ-khyFbBbp1AvXXawIoKbX3dM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22415720095-7i4ken0n38rrqctcvc41d2grgit143ia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
