@@ -159,7 +159,7 @@ public class Income extends Activity implements AdapterView.OnItemSelectedListen
                     InputMethodManager imm_note = (InputMethodManager)
                             getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm_note.hideSoftInputFromWindow(note.getWindowToken(), 0);
-                    Toast.makeText(Income.this, "New Expense Added!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Income.this, "New Income Added!", Toast.LENGTH_LONG).show();
 
                     for(int i = 0; i < category_add.length(); i++);
                     if(category_add == null) {

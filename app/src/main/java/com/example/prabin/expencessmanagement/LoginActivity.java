@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (password.length() > 0 && email.length() > 0) {//check or passing object
                         PD.show();
+
                         auth.signInWithEmailAndPassword(email, password)
                                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                     @Override
@@ -59,11 +60,14 @@ public class LoginActivity extends AppCompatActivity {
                                                     "Username password do not match !!",
                                                     Toast.LENGTH_LONG).show();//3000 milisecoand
                                             Log.v("error", task.getResult().toString());
-                                        } else {
+                                        }
+
+                                         else {
                                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                             startActivity(intent);
-                                           //finish();
+                                           finish();
                                             // finish login activity while login user details show main activity always...
+
                                         }
                                         PD.dismiss();
                                     }

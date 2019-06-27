@@ -27,7 +27,7 @@ import java.util.Calendar;
         Button btnBack = (Button)findViewById(R.id.btn_settings_back);
         Button editExpense = (Button)findViewById(R.id.btn_settings_editExp);
         Button addCategory = (Button)findViewById(R.id.btn_settings_addCat);
-        Button addIncome = (Button)findViewById(R.id.btn_settings_addInc);
+        //Button addIncome = (Button)findViewById(R.id.btn_settings_addInc);
 
 
         relativeLayout = (RelativeLayout) findViewById(R.id.content_main);
@@ -57,12 +57,12 @@ import java.util.Calendar;
             }
         });
 
-        addIncome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        addIncome.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
 
 

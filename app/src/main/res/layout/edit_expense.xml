@@ -38,6 +38,7 @@
         android:drawableLeft="@mipmap/chevronleftblack"
         android:text=" Edit Expense"
         android:textAlignment="textStart"
+        android:layout_gravity="start"
         android:textAllCaps="false"
         android:textSize="24sp"
         android:textStyle="bold" />
