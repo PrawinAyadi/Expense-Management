@@ -14,8 +14,6 @@ import android.widget.Spinner;
 
 import java.util.Calendar;
 
-
-
     public class Setting extends Activity {
     RelativeLayout relativeLayout;
 

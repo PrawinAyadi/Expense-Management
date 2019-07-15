@@ -10,7 +10,7 @@ import java.util.List;
 public class TabHistory_week extends Activity{
     ListView list;
     List<TabHistory_Week_List> listWeek;
-    TabHistory_Week_Adapter adapter;
+    Tab_List_Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class TabHistory_week extends Activity{
     private void loadListView(){
         DBHelper db = new DBHelper(getApplicationContext());
         listWeek = db.getHistoryList();
-        adapter = new TabHistory_Week_Adapter(getApplicationContext(), listWeek);
+        adapter = new Tab_List_Adapter(getApplicationContext(), listWeek);
         list.setAdapter(adapter);
 
     }

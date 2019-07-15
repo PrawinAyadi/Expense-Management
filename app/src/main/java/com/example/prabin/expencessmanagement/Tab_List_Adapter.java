@@ -13,25 +13,25 @@ import java.util.List;
  * Created by Prabin.
  */
 
-public class TabHistory_Week_Adapter extends BaseAdapter{
+public class Tab_List_Adapter extends BaseAdapter{
     Context context;
-    List<TabHistory_Week_List> listWeek;
+    List<TabHistory_Week_List> list;
 
 
-    public TabHistory_Week_Adapter(Context context, List<TabHistory_Week_List> listWeek){
+    public Tab_List_Adapter(Context context, List<TabHistory_Week_List> listWeek){
         this.context = context;
-        this.listWeek = listWeek;
+        this.list = listWeek;
 
     }
 
     @Override
     public int getCount() {
-        return listWeek.size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return listWeek.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -42,18 +42,18 @@ public class TabHistory_Week_Adapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View view = View.inflate(context, R.layout.tab_history_week_list, null);
+        View view = View.inflate(context, R.layout.list_expenses, null);
 
         TextView txtName = (TextView)view.findViewById(R.id.tbhw_name);
         TextView txtDate = (TextView)view.findViewById(R.id.tbhw_date);
         TextView txtAmount = (TextView)view.findViewById(R.id.tbhw_amount);
         TextView txtNote = (TextView)view.findViewById(R.id.tbhw_note);
 
-        txtName.setText(listWeek.get(position).getName());
+        txtName.setText(list.get(position).getName());
         DecimalFormat precision = new DecimalFormat("0.00");
-        txtAmount.setText(precision.format(listWeek.get(position).getAmount()));
-        txtDate.setText(listWeek.get(position).getDate());
-        txtNote.setText(listWeek.get(position).getNote());
+        txtAmount.setText(precision.format(list.get(position).getAmount()));
+        txtDate.setText(list.get(position).getDate());
+        txtNote.setText(list.get(position).getNote());
 
 
         return view;

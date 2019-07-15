@@ -30,9 +30,11 @@ public class Tab1 extends Activity {
     DBHelper dbHelper;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)  {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab1);
+
+        dbHelper = new DBHelper(getApplicationContext());
 
         listView = (ListView) findViewById(R.id.listAddCategory);
         btnAdd = (Button) findViewById(R.id.btnAddCategory);
@@ -46,37 +48,21 @@ public class Tab1 extends Activity {
             public void onClick(View arg0) {
                 String category_name = inputLabel.getText().toString();
 
-                if (category_name.trim().length() > 0) {
-                    DBHelper db = new DBHelper(getApplicationContext());
-                    db.insertCategory(category_name);
-
-
-                    inputLabel.setText("");
-
-                    InputMethodManager imm = (InputMethodManager)
-                            getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(inputLabel.getWindowToken(), 0);
-
-                    Toast.makeText(getApplication(), "Successfully Added!", Toast.LENGTH_SHORT).show();
-                    loadListView();
-
-                } else{
-                    Toast.makeText(getApplication(), "Please enter category name",
-                            Toast.LENGTH_SHORT).show();
-                }
+                String result = addCategory(category_name);
+                Toast.makeText(Tab1.this, result, Toast.LENGTH_SHORT).show();
 
             }
         });
 
-         cancel.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 finish();
-             }
-         });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
-    public void loadListView(){
+    public void loadListView() {
         dbHelper = new DBHelper(getApplicationContext());
         listViews = dbHelper.getCategoryName();
         tab1_adapter = new Tab1_Adapter(getApplicationContext(), listViews);
@@ -90,15 +76,15 @@ public class Tab1 extends Activity {
         });
     }
 
-    public void showEditBox(final String oldItem, final Integer id){
+    public void showEditBox(final String oldItem, final Integer id) {
         final Dialog dialog = new Dialog(Tab1.this);
         dialog.setCancelable(true);
         dialog.setTitle("Update / Delete Category");
         dialog.setContentView(R.layout.edit_category);
-        final EditText editText = (EditText)dialog.findViewById(R.id.editCategory);
+        final EditText editText = (EditText) dialog.findViewById(R.id.editCategory);
         editText.setText(oldItem);
-        Button btn = (Button)dialog.findViewById(R.id.btnDone);
-        Button delete = (Button)dialog.findViewById(R.id.btnCancelEdit);
+        Button btn = (Button) dialog.findViewById(R.id.btnDone);
+        Button delete = (Button) dialog.findViewById(R.id.btnCancelEdit);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,12 +96,11 @@ public class Tab1 extends Activity {
 
                 String Category_name = editText.getText().toString();
                 editText.setText("");
-                db.updateCategory(ids,Category_name);
+                db.updateCategory(ids, Category_name);
 
-                Toast.makeText(Tab1.this, "Category name edited to "+ Category_name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Tab1.this, "Category name edited to " + Category_name, Toast.LENGTH_SHORT).show();
                 loadListView();
                 dialog.dismiss();
-
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
@@ -123,25 +108,25 @@ public class Tab1 extends Activity {
             public void onClick(View v) {
                 dialog.dismiss();
                 final AlertDialog.Builder dialog1 = new AlertDialog.Builder(Tab1.this)
-                        .setTitle("Delete "+listViews.get(id).getName().toString()+"?")
+                        .setTitle("Delete " + listViews.get(id).getName().toString() + "?")
                         .setMessage("Make sure this item is empty or transferred to other item. Otherwise all data related to this item will be deleted.")
-                        .setPositiveButton("Delete", new DialogInterface.OnClickListener(){
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog1, int which) {
                                 dialog1.dismiss();
                                 final AlertDialog.Builder dialogDelete = new AlertDialog.Builder(Tab1.this)
                                         .setMessage("Are you sure you want to delete this item?")
-                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogDel, int which) {
-                                                String value  = listViews.get(id).getName().toString();
-                                                String deleted= " is Deleted!";
+                                                String value = listViews.get(id).getName().toString();
+                                                String deleted = " is Deleted!";
                                                 dbHelper.deleteCategory(value);
                                                 dbHelper.deleteAddCategory(value);
                                                 tab1_adapter.notifyDataSetChanged();
                                                 loadListView();
 
-                                                Toast.makeText(Tab1.this,"Category  " +value +deleted , Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Tab1.this, "Category  " + value + deleted, Toast.LENGTH_SHORT).show();
 
                                                 dialogDel.dismiss();
 
@@ -149,17 +134,17 @@ public class Tab1 extends Activity {
 
                                         })
 
-                                        .setNegativeButton("No", new DialogInterface.OnClickListener(){
+                                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogdel1, int which) {
                                                 dialogdel1.dismiss();
                                             }
                                         });
-                               dialogDelete.show();
+                                dialogDelete.show();
                             }
                         })
 
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog2, int which) {
 
@@ -177,18 +162,40 @@ public class Tab1 extends Activity {
                                     loadListView();
                                     */
 
-                                    dialog2.dismiss();
-                                    dialog.dismiss();
+                                dialog2.dismiss();
+                                dialog.dismiss();
 
                             }
                         });
-                        dialog1.show();
+                dialog1.show();
 
             }
 
         });
         dialog.show();
 
+    }
+
+    public String addCategory(String category_name) {
+        if (category_name.trim().length() > 0) {
+//            DBHelper db = new DBHelper(getApplicationContext());
+            dbHelper.insertCategory(category_name);
+
+            inputLabel.setText("");
+
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(inputLabel.getWindowToken(), 0);
+
+//            Toast.makeText(getApplication(), "Successfully Added!", Toast.LENGTH_SHORT).show();
+            loadListView();
+
+        } else {
+            Toast.makeText(getApplication(), "Please enter category name",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        return category_name + " successfully added";
     }
 
 }

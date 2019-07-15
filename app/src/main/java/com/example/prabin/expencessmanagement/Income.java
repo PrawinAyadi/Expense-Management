@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.List;
 
 
-public class Income extends Activity implements AdapterView.OnItemSelectedListener {
+public class Income extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText amount_add;
     EditText date_add;
@@ -121,9 +121,11 @@ public class Income extends Activity implements AdapterView.OnItemSelectedListen
             @Override
             public void onClick (View v){
                 Log.d("val", "onClick: CANCEL BUTTON CLICKED");
-                startActivity(new Intent(getApplicationContext(), Overview.class));
+                startActivity(new Intent(Income.this,MainActivity.class));
+//                finish();
             }
         });
+        //tab
 
         button.setOnClickListener(new View.OnClickListener()
 

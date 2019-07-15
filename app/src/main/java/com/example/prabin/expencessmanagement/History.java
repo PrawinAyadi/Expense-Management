@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class History extends Fragment {
     ListView list;
-    TabHistory_Week_Adapter adapter;
+    Tab_List_Adapter adapter;
     List<TabHistory_Week_List> lists;
 
     public History()
@@ -37,7 +37,7 @@ public class History extends Fragment {
 
         DBHelper db = new DBHelper(getContext());
         lists = db.getHistoryWeek();
-        adapter = new TabHistory_Week_Adapter(getContext(), (ArrayList<TabHistory_Week_List>) lists);
+        adapter = new Tab_List_Adapter(getContext(), (ArrayList<TabHistory_Week_List>) lists);
         list.setAdapter(adapter);
 
         return view;
