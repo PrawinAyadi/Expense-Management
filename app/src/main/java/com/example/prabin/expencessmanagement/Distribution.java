@@ -30,7 +30,7 @@ public class Distribution extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view =  inflater.inflate(fragment_fragment_distribution, container, false);
 
         barChart = (BarChart)view.findViewById(R.id.barChartDist);
